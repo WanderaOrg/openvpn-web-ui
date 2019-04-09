@@ -96,6 +96,7 @@ func trim(s string) string {
 func CreateCertificate(name string, email string) error {
 	rsaPath := "/usr/share/easy-rsa/"
 	varsPath := models.GlobalCfg.OVConfigPath + "keys/vars"
+	beego.Notice("Email", email)
 	cmd := exec.Command("/bin/bash", "-c",
 		fmt.Sprintf(
 			"source %s &&"+

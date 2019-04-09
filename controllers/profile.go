@@ -5,11 +5,12 @@ import (
 
 	passlib "gopkg.in/hlandau/passlib.v1"
 
-	"openvpn-web-ui/lib"
-	"openvpn-web-ui/models"
+	"../lib"
+	"../models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
+	"github.com/astaxie/beego/logs"
 )
 
 type ProfileController struct {
@@ -40,7 +41,7 @@ func (c *ProfileController) Post() {
 
 	user := models.User{}
 	if err := c.ParseForm(&user); err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 		return
@@ -75,7 +76,7 @@ func validateUser(user models.User) map[string]map[string]string {
 	valid := validation.Validation{}
 	b, err := valid.Valid(&user)
 	if err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		return nil
 	}
 	if !b {

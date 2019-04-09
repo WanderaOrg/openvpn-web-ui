@@ -74,7 +74,7 @@ func (ctx *Context) Redirect(status int, localurl string) {
 }
 
 // Abort stops this request.
-// if beego.ErrorMaps exists, panic body.
+// if logs.ErrorMaps exists, panic body.
 func (ctx *Context) Abort(status int, body string) {
 	ctx.Output.SetStatus(status)
 	panic(body)

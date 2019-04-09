@@ -8,11 +8,12 @@ import (
 	"path/filepath"
 	"time"
 
-	"go-openvpn/client/config"
-	"openvpn-web-ui/lib"
-	"openvpn-web-ui/models"
+	"github.com/adamwalach/go-openvpn/client/config"
+	"../lib"
+	"../models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
+	"github.com/astaxie/beego/logs"
 )
 
 type NewCertParams struct {
@@ -53,7 +54,7 @@ func (c *CertificatesController) Download() {
 	addFileToZip(zw, keysPath+name+".key")
 
 	if err := zw.Close(); err != nil {
-		beego.Error(err)
+		logs.Error(err)
 	}
 }
 
@@ -66,18 +67,18 @@ func addFileToZip(zw *zip.Writer, path string) error {
 	}
 	fi, err := os.Open(path)
 	if err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		return err
 	}
 
 	fw, err := zw.CreateHeader(header)
 	if err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		return err
 	}
 
 	if _, err = io.Copy(fw, fi); err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		return err
 	}
 
@@ -94,7 +95,7 @@ func (c *CertificatesController) showCerts() {
 	path := models.GlobalCfg.OVConfigPath + "keys/index.txt"
 	certs, err := lib.ReadCerts(path)
 	if err != nil {
-		beego.Error(err)
+		logs.Error(err)
 	}
 	lib.Dump(certs)
 	c.Data["certificates"] = &certs
@@ -107,7 +108,7 @@ func (c *CertificatesController) Post() {
 
 	cParams := NewCertParams{}
 	if err := c.ParseForm(&cParams); err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 	} else {
@@ -115,7 +116,7 @@ func (c *CertificatesController) Post() {
 			c.Data["validation"] = vMap
 		} else {
 			if err := lib.CreateCertificate(cParams.Name, cParams.Email); err != nil {
-				beego.Error(err)
+				logs.Error(err)
 				flash.Error(err.Error())
 				flash.Store(&c.Controller)
 			}
@@ -128,7 +129,7 @@ func validateCertParams(cert NewCertParams) map[string]map[string]string {
 	valid := validation.Validation{}
 	b, err := valid.Valid(&cert)
 	if err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		return nil
 	}
 	if !b {
@@ -153,7 +154,7 @@ func saveClientConfig(name string) (string, error) {
 	destPath := models.GlobalCfg.OVConfigPath + "keys/" + name + ".conf"
 	if err := config.SaveToFile("conf/openvpn-client-config.tpl",
 		cfg, destPath); err != nil {
-		beego.Error(err)
+		logs.Error(err)
 		return "", err
 	}
 

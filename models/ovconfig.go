@@ -1,7 +1,7 @@
 package models
 
 import (
-	"go-openvpn/server/config"
+	"github.com/adamwalach/go-openvpn/server/config"
 	"github.com/astaxie/beego/orm"
 )
 

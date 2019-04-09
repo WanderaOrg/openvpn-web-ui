@@ -10,17 +10,17 @@
 		},
 		{
 			"checksumSHA1": "o7BYE27OtcYbXwFr6XIwUFuBIpo=",
-			"path": "go-openvpn/client/config",
+			"path": "github.com/adamwalach/go-openvpn/client/config",
 			"revision": ""
 		},
 		{
 			"checksumSHA1": "Qbt9l3quX+Bqz0CflV7eWwLNjsk=",
-			"path": "go-openvpn/server/config",
+			"path": "github.com/adamwalach/go-openvpn/server/config",
 			"revision": ""
 		},
 		{
 			"checksumSHA1": "/1iWdCpxfo1M1qBce/bpeKqUJpo=",
-			"path": "go-openvpn/server/mi",
+			"path": "github.com/adamwalach/go-openvpn/server/mi",
 			"revision": ""
 		},
 		{

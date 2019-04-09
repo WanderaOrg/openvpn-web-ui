@@ -3,8 +3,8 @@ package controllers
 import (
 	"encoding/json"
 
-	mi "go-openvpn/server/mi"
-	"openvpn-web-ui/models"
+	mi "github.com/adamwalach/go-openvpn/server/mi"
+	"../models"
 )
 
 //APISignalController sends signals to OpenVPN daemon

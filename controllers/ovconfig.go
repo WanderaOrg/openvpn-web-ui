@@ -3,11 +3,12 @@ package controllers
 import (
 	"html/template"
 
-	"go-openvpn/server/config"
-	mi "go-openvpn/server/mi"
-	"openvpn-web-ui/lib"
-	"openvpn-web-ui/models"
+	"github.com/adamwalach/go-openvpn/server/config"
+	mi "github.com/adamwalach/go-openvpn/server/mi"
+	"../lib"
+	"../models"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -40,7 +41,7 @@ func (c *OVConfigController) Post() {
 	cfg := models.OVConfig{Profile: "default"}
 	cfg.Read("Profile")
 	if err := c.ParseForm(&cfg); err != nil {
-		beego.Warning(err)
+		logs.Warning(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 		return
@@ -51,7 +52,7 @@ func (c *OVConfigController) Post() {
 	destPath := models.GlobalCfg.OVConfigPath + "/server.conf"
 	err := config.SaveToFile("conf/openvpn-server-config.tpl", cfg.Config, destPath)
 	if err != nil {
-		beego.Warning(err)
+		logs.Warning(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 		return

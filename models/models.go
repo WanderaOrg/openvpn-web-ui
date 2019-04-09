@@ -3,7 +3,7 @@ package models
 import (
 	"os"
 
-	"github.com/adamwalach/go-openvpn/server/config"
+	"github.com/WanderaOrg/go-openvpn/server/config"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	passlib "gopkg.in/hlandau/passlib.v1"
@@ -56,7 +56,7 @@ func createDefaultUsers() {
 		Id:       1,
 		Login:    "admin",
 		Name:     "Administrator",
-		Email:    "root@localhost",
+		Email:    "ops-notify@wandera.com",
 		Password: hash,
 	}
 	o := orm.NewOrm()

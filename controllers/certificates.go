@@ -8,15 +8,16 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/adamwalach/go-openvpn/client/config"
-	"github.com/adamwalach/openvpn-web-ui/lib"
-	"github.com/adamwalach/openvpn-web-ui/models"
+	"github.com/WanderaOrg/go-openvpn/client/config"
+	"github.com/WanderaOrg/openvpn-web-ui/lib"
+	"github.com/WanderaOrg/openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 )
 
 type NewCertParams struct {
 	Name string `form:"Name" valid:"Required;"`
+	Email string `form:"Email" valid:"Required;"`
 }
 
 type CertificatesController struct {
@@ -113,7 +114,7 @@ func (c *CertificatesController) Post() {
 		if vMap := validateCertParams(cParams); vMap != nil {
 			c.Data["validation"] = vMap
 		} else {
-			if err := lib.CreateCertificate(cParams.Name); err != nil {
+			if err := lib.CreateCertificate(cParams.Name, cParams.Email); err != nil {
 				beego.Error(err)
 				flash.Error(err.Error())
 				flash.Store(&c.Controller)

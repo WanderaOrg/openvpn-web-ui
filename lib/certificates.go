@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/adamwalach/openvpn-web-ui/models"
+	"github.com/WanderaOrg/openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 )
 
@@ -93,14 +93,15 @@ func trim(s string) string {
 	return strings.Trim(strings.Trim(s, "\r\n"), "\n")
 }
 
-func CreateCertificate(name string) error {
+func CreateCertificate(name string, email string) error {
 	rsaPath := "/usr/share/easy-rsa/"
 	varsPath := models.GlobalCfg.OVConfigPath + "keys/vars"
 	cmd := exec.Command("/bin/bash", "-c",
 		fmt.Sprintf(
 			"source %s &&"+
 				"export KEY_NAME=%s &&"+
-				"%s/build-key --batch %s", varsPath, name, rsaPath, name))
+				"export KEY_EMAIL=%s &&"+
+				"%s/build-key --batch %s", varsPath, name, email, rsaPath, name))
 	cmd.Dir = models.GlobalCfg.OVConfigPath
 	output, err := cmd.CombinedOutput()
 	if err != nil {

@@ -84,8 +84,8 @@ Requirements:
 
 Execute commands:
 
-    go get github.com/adamwalach/openvpn-web-ui
-    cd $GOPATH/src/github.com/adamwalach/openvpn-web-ui
+    go get github.com/WanderaOrg/openvpn-web-ui
+    cd $GOPATH/src/github.com/WanderaOrg/openvpn-web-ui
     bee run -gendoc=true
 
 ## Todo

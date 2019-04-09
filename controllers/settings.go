@@ -3,7 +3,7 @@ package controllers
 import (
 	"html/template"
 
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	"openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )

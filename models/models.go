@@ -3,7 +3,7 @@ package models
 import (
 	"os"
 
-	"github.com/WanderaOrg/go-openvpn/server/config"
+	"go-openvpn/server/config"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	passlib "gopkg.in/hlandau/passlib.v1"

@@ -3,8 +3,8 @@ package controllers
 import (
 	"encoding/json"
 
-	mi "github.com/WanderaOrg/go-openvpn/server/mi"
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	mi "go-openvpn/server/mi"
+	"openvpn-web-ui/models"
 )
 
 //APISessionController manages vpn sessions

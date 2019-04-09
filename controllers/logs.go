@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	"openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 )
 

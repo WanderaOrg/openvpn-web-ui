@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"github.com/WanderaOrg/openvpn-web-ui/controllers"
+	"openvpn-web-ui/controllers"
 	"github.com/astaxie/beego"
 )
 

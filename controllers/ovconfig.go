@@ -3,10 +3,10 @@ package controllers
 import (
 	"html/template"
 
-	"github.com/WanderaOrg/go-openvpn/server/config"
-	mi "github.com/WanderaOrg/go-openvpn/server/mi"
-	"github.com/WanderaOrg/openvpn-web-ui/lib"
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	"go-openvpn/server/config"
+	mi "go-openvpn/server/mi"
+	"openvpn-web-ui/lib"
+	"openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )

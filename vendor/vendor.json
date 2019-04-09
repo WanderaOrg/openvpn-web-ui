@@ -10,17 +10,17 @@
 		},
 		{
 			"checksumSHA1": "o7BYE27OtcYbXwFr6XIwUFuBIpo=",
-			"path": "github.com/WanderaOrg/go-openvpn/client/config",
+			"path": "go-openvpn/client/config",
 			"revision": ""
 		},
 		{
 			"checksumSHA1": "Qbt9l3quX+Bqz0CflV7eWwLNjsk=",
-			"path": "github.com/WanderaOrg/go-openvpn/server/config",
+			"path": "go-openvpn/server/config",
 			"revision": ""
 		},
 		{
 			"checksumSHA1": "/1iWdCpxfo1M1qBce/bpeKqUJpo=",
-			"path": "github.com/WanderaOrg/go-openvpn/server/mi",
+			"path": "go-openvpn/server/mi",
 			"revision": ""
 		},
 		{
@@ -192,5 +192,5 @@
 			"revisionTime": "2016-09-22T11:41:03Z"
 		}
 	],
-	"rootPath": "github.com/WanderaOrg/openvpn-web-ui"
+	"rootPath": "openvpn-web-ui"
 }

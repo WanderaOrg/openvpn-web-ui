@@ -34,4 +34,4 @@ OPTS="${OPTS} GOOS=${GOOS} GOARCH=${GOARCH} GOHOSTOS=${GOHOSTOS} CGO_ENABLED=${C
 
 cd ..
 env ${OPTS} go build -o openvpn-web-ui -a  .
-tar -czf ${PKGFILE} LICENSE conf static/ swagger/ views/ openvpn-web-ui controllers lib models/ routers/ vendor/
+tar -czf ${PKGFILE} LICENSE conf static/ swagger/ views/ openvpn-web-ui controllers lib models/ routers/

@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/adamwalach/go-openvpn/client/config"
-	"github.com/WanderaOrg/openvpn-web-ui/lib"
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	"../lib"
+	"../models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 	"github.com/astaxie/beego/logs"

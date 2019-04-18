@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/WanderaOrg/openvpn-web-ui/lib"
+import "../lib"
 
 //APISysloadController provides system information
 type APISysloadController struct {

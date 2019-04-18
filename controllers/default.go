@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/WanderaOrg/openvpn-web-ui/lib"
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	"../lib"
+	"../models"
 	"github.com/astaxie/beego/logs"
 
 	mi "github.com/adamwalach/go-openvpn/server/mi"

@@ -1,9 +1,6 @@
 #!/bin/bash
 
 packages=(
-  "github.com/WanderaOrg/openvpn-web-ui/controllers"
-  "github.com/WanderaOrg/openvpn-web-ui/lib"
-  "github.com/WanderaOrg/openvpn-web-ui/models"
   "github.com/Sirupsen/logrus"
   "github.com/adamwalach/go-openvpn/client/config"
   "github.com/adamwalach/go-openvpn/server/config"
@@ -18,6 +15,7 @@ packages=(
   "github.com/astaxie/beego/utils"
   "github.com/astaxie/beego/validation"
   "gopkg.in/yaml.v2"
+  "github.com/cloudfoundry/gosigar"
 )
 
 for package in "${packages[@]}"; do

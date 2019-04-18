@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	mi "github.com/adamwalach/go-openvpn/server/mi"
-	"github.com/WanderaOrg/openvpn-web-ui/models"
+	"../models"
 )
 
 //APISessionController manages vpn sessions

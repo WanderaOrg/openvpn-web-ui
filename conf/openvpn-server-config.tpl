@@ -29,6 +29,6 @@ persist-key
 persist-tun
 
 log         openvpn.log
-verb 3
+verb 5
 
 mute 10

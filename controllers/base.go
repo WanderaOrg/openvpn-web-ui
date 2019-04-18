@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"../models"
+	"github.com/WanderaOrg/openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 )
 

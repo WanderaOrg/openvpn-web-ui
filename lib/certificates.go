@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"../models"
+	"github.com/WanderaOrg/openvpn-web-ui/models"
 	"github.com/astaxie/beego/logs"
 )
 

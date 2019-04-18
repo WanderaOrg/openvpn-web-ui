@@ -2,15 +2,20 @@ package models
 
 import (
 	"os"
+	"io/ioutil"
 
 	"github.com/adamwalach/go-openvpn/server/config"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/logs"
-	passlib "gopkg.in/hlandau/passlib.v1"
+	"gopkg.in/yaml.v2"
 )
 
 var GlobalCfg Settings
+
+type Configuration struct {
+    Hash string `yaml:"admin_password_hash"`
+}
 
 func init() {
 	initDB()
@@ -49,9 +54,18 @@ func initDB() {
 }
 
 func createDefaultUsers() {
-	hash, err := passlib.Hash("b3secure")
+	var configuration Configuration
+	config_file := "/opt/openvpn-gui/secrets.json"
+
+	data, err := ioutil.ReadFile(config_file)
 	if err != nil {
-		logs.Error("Unable to hash password", err)
+		panic(err)
+	}
+	err = yaml.Unmarshal(data, &configuration)
+	hash := configuration.Hash
+	if err != nil {
+		logs.Error("Failed to get hash pwd")
+		panic(err)
 	}
 	user := User{
 		Id:       1,

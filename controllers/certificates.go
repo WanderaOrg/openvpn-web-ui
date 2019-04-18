@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/adamwalach/go-openvpn/client/config"
-	"../lib"
-	"../models"
+	"github.com/WanderaOrg/openvpn-web-ui/lib"
+	"github.com/WanderaOrg/openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 	"github.com/astaxie/beego/logs"
@@ -39,6 +39,9 @@ func (c *CertificatesController) NestPrepare() {
 func (c *CertificatesController) Download() {
 	name := c.GetString(":key")
 	filename := fmt.Sprintf("%s.zip", name)
+
+	logs.Debug("NAME: %s", name)
+	logs.Debug("filename: %s", filename)
 
 	c.Ctx.Output.Header("Content-Type", "application/zip")
 	c.Ctx.Output.Header("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", filename))

@@ -16,4 +16,3 @@ cd /opt/openvpn-gui
 mkdir -p db
 ./openvpn-web-ui
 echo "Starting!"
-

@@ -5,8 +5,8 @@ import (
 
 	"github.com/adamwalach/go-openvpn/server/config"
 	mi "github.com/adamwalach/go-openvpn/server/mi"
-	"../lib"
-	"../models"
+	"github.com/WanderaOrg/openvpn-web-ui/lib"
+	"github.com/WanderaOrg/openvpn-web-ui/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"

@@ -5,6 +5,9 @@ ca_certs_dir="/.wandera_self_signed_ca"
 KEY_DIR="/etc/openvpn/keys"
 new_cert="no"
 
+sed -i -e 's/\[ usr_cert \]/[ usr_cert ] \
+authorityInfoAccess = OCSP;URI:http:\/\/openvpn.wandera.com/g' /etc/ssl/openssl.cnf
+
 mkdir -p /etc/openvpn/keys
 if [[ ! -f /etc/openvpn/keys/index.txt ]]; then
   touch /etc/openvpn/keys/index.txt
@@ -31,4 +34,20 @@ if [[ $new_cert == "yes" || ! -f ${KEY_DIR}/${SERVER_NAME}.pem ]]; then
   done
 
   chmod 400 ${KEY_DIR}/server.key
+fi
+
+if [[ $new_cert == "yes" || ! -f ${KEY_DIR}/trusted_chain.crt ]]; then
+  # Create browser cert
+  DOMAIN="wandera.com"
+  COMMON_NAME="*.$DOMAIN"
+  SUBJECT=$(echo "$SUBJECT" | sed -e "s/CN=.*/CN=$COMMON_NAME/g")
+  NUM_OF_DAYS=999
+
+  openssl req -new -newkey rsa:2048 -sha256 -nodes -keyout ${KEY_DIR}/browser.key -subj "$SUBJECT" -out ${KEY_DIR}/browser.csr
+
+  cat /tmp/v3.ext | sed s/%%DOMAIN%%/"$COMMON_NAME"/g > /tmp/__v3.ext
+
+  openssl x509 -req -in ${KEY_DIR}/browser.csr -CA ${ca_certs_dir}/cacert/wanderaCA.pem -CAkey ${ca_certs_dir}/private/wanderaCA.key -CAcreateserial -out ${KEY_DIR}/browser.crt -days 3650 -sha256 -extfile /tmp/__v3.ext
+
+  cat ${KEY_DIR}/browser.csr ${KEY_DIR}/browser.crt ${ca_certs_dir}/cacert/wanderaCA.pem > ${KEY_DIR}/trusted_chain.crt
 fi

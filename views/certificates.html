@@ -36,7 +36,7 @@
               {{ if ne .Details.Name "server"}}
               <tr>
                   <td>
-                    <a href="{{urlfor "CertificatesController.Download" ":key" .Details.Name}}">
+                    <a href="{{urlfor "CertificatesController.Get"}}/:key?name={{ .Details.Name }}">
                       {{ .Details.Name }}
                     </a>
                   </td>

@@ -10,7 +10,6 @@ package routers
 import (
 	"../controllers"
 	"github.com/astaxie/beego"
-	//"../beego"
 )
 
 func init() {
@@ -22,8 +21,8 @@ func init() {
 	beego.Router("/settings", &controllers.SettingsController{})
 	beego.Router("/ov/config", &controllers.OVConfigController{})
 	beego.Router("/logs", &controllers.LogsController{})
-	//beego.Router("/certificates", &controllers.CertificatesController{})
-	//beego.Router("/certificates/:ref", &controllers.CertificatesController{}, "get:Download")
+	beego.Router("/certificates", &controllers.CertificatesController{})
+	beego.Router("/certificates/:ref", &controllers.CertificatesController{}, "get:Download")
 
 	beego.Include(&controllers.CertificatesController{})
 

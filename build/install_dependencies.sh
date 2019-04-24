@@ -16,6 +16,8 @@ packages=(
   "github.com/astaxie/beego/validation"
   "gopkg.in/yaml.v2"
   "github.com/cloudfoundry/gosigar"
+  "github.com/mattn/go-sqlite3"
+  "gopkg.in/hlandau/passlib.v1"
 )
 
 for package in "${packages[@]}"; do

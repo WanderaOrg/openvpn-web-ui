@@ -37,7 +37,13 @@ func (c *CertificatesController) NestPrepare() {
 
 // @router /certificates/:key [get]
 func (c *CertificatesController) Download() {
-	name := c.GetString(":key")
+	name_list, ok := c.Ctx.Request.URL.Query()["name"]
+	if !ok || len(name_list[0]) < 1 {
+	  logs.Error("Url Param 'names' is missing")
+	  return
+  }
+	name := name_list[0]
+	//name := c.GetString(":key")
 	filename := fmt.Sprintf("%s.zip", name)
 
 	logs.Debug("NAME: %s", name)

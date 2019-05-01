@@ -32,9 +32,7 @@ Please note this project is in alpha stage. It still needs some work to make it 
 After startup web service is visible on port 8080. To login use the following default credentials:
 
 * username: admin
-* password: b3secure (this will be soon replaced with random password)
-
-Please change password to your own immediately!
+* password: created by admin and hashed via openvpn-web-ui/build/assets/encrypt_pwd.go
 
 ### Prod
 
@@ -44,15 +42,20 @@ Requirements:
 
 Execute commands
 
-    curl -O https://raw.githubusercontent.com/adamwalach/openvpn-web-ui/master/docs/docker-compose.yml
-    docker-compose up -d
+    cd openvpn-data
+    ./build.sh X.X.X CC=/usr/local/bin/x86_64-linux-musl-gcc # if new image required
+    ./run.sh X.X.X
 
-It starts two docker containers. One with OpenVPN server and second with OpenVPNAdmin web application. Through a docker volume it creates following directory structure:
+It starts 3 docker containers.
+- One with OpenVPN server
+- second with OpenVPNAdmin web application
+- and third a nginx proxy for https access
 
+Through a docker volume it creates following directory structure:
 
     .
     ├── docker-compose.yml
-    └── openvpn-data
+    └── openvpn-data-wandera
         ├── conf
         │   ├── dh2048.pem
         │   ├── ipp.txt
@@ -80,38 +83,16 @@ It starts two docker containers. One with OpenVPN server and second with OpenVPN
 
 Requirements:
 * golang environments
-* [beego](https://beego.me/docs/install/)
-
-Execute commands:
-
-    go get github.com/WanderaOrg/openvpn-web-ui
-    cd $GOPATH/src/github.com/WanderaOrg/openvpn-web-ui
-    bee run -gendoc=true
+* All modules required are installed during the build
 
 ## Todo
 
 * add unit tests
 * add option to modify certificate properties
-* generate random admin password at initialization phase
 * add versioning
-* add automatic ssl/tls (check how [ponzu](https://github.com/ponzu-cms/ponzu) did it)
+* add certificate revokation: base function RevokeCertificates created in openvpn-web-ui/lib/certificates.go, need to finish the CertificatesController Revoke in openvpn-web-ui/controllers/certificates.go
 
 
 ## License
 
 This project uses [MIT license](LICENSE)
-
-## Remarks
-
-### Vendoring
-https://github.com/kardianos/govendor is used for vendoring.
-
-To update dependencies from GOPATH:
-
-`govendor update +v`
-
-### Template
-AdminLTE - dashboard & control panel theme. Built on top of Bootstrap 3.
-
-Preview: https://almsaeedstudio.com/themes/AdminLTE/index2.html
-

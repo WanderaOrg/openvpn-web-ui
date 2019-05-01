@@ -67,6 +67,31 @@ func (c *CertificatesController) Download() {
 	}
 }
 
+// TO BE IMPLEMENTED
+// @router /revoke [post]
+func (c *CertificatesController) Revoke() {
+	c.TplName = "certificates.html"
+	flash := beego.NewFlash()
+
+	cParams := NewCertParams{}
+	if err := c.ParseForm(&cParams); err != nil {
+		logs.Error(err)
+		flash.Error(err.Error())
+		flash.Store(&c.Controller)
+	} else {
+		if vMap := validateCertParams(cParams); vMap != nil {
+			c.Data["validation"] = vMap
+		} else {
+			if err := lib.RevokeCertificate(cParams.Name); err != nil {
+				logs.Error(err)
+				flash.Error(err.Error())
+				flash.Store(&c.Controller)
+			}
+		}
+	}
+	c.showCerts()
+}
+
 func addFileToZip(zw *zip.Writer, path string) error {
 	header := &zip.FileHeader{
 		Name:         filepath.Base(path),
